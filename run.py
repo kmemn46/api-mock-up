@@ -6,8 +6,11 @@ app = Flask(__name__)
 @app.route("/api-mock", methods=["POST"])
 def api_mock():
 
+    # パラメータ取得
     request_data = request.form["image_path"]
     print(request_data)
+
+    # 返却用Json
     response_success = {
         "success": True,
         "message": "success",
@@ -21,8 +24,9 @@ def api_mock():
         "message": "Error:E50012",
         "estimated_data":{}
     }
-
     response = [response_success, response_error]
+
+    # ランダムで返却
     return jsonify(random.choice(response))
 
 if __name__ == "__main__":
